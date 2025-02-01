@@ -1,0 +1,95 @@
+1. SHAP Feature Importance (Bar Chart)
+What it shows:
+
+Horizontal bars representing how much each feature (e.g., num_failed_logins, src_bytes) influenced the model’s prediction.
+
+Positive values (right): Features increasing suspicion (e.g., 15 failed logins).
+
+Negative values (left): Features reducing risk (e.g., normal dst_bytes).
+
+Use cases:
+
+Root cause analysis: Identify which features triggered a high-risk alert.
+Example: A brute-force attack detection shows num_failed_logins as the top contributor.
+
+Rule validation: Verify if existing SIEM rules align with model logic.
+
+Feature engineering: Remove non-contributing features to simplify models.
+
+2. Grad-CAM Heatmap (Time-Series)
+What it shows:
+
+A color-coded timeline (red = high risk, blue = normal) highlighting critical moments in sequential log data.
+
+Peaks indicate suspicious temporal patterns (e.g., port scanning at 00:10).
+
+Use cases:
+
+Attack pattern detection: Spot repeated spikes in activity (e.g., data exfiltration every 5 minutes).
+
+Forensic alignment: Correlate heatmap spikes with external events (e.g., phishing email timestamps).
+
+Behavioral baselining: Compare normal vs. anomalous time-based patterns.
+
+3. Malware Probability Distribution (Histogram)
+What it shows:
+
+X-axis: Probability scores (0–1). Y-axis: Frequency of events.
+
+A left-skewed histogram = mostly benign traffic; right-skewed = widespread attacks.
+
+Use cases:
+
+Threshold tuning: Set alert thresholds based on the "long tail" of high probabilities.
+
+Attack scope assessment: Estimate the proportion of compromised events in a breach.
+Example: A spike at 0.95 suggests a targeted attack vs. scattered 0.6–0.7 scores indicating a broader campaign.
+
+Model calibration: Check for overconfidence (e.g., too many 0.99 scores).
+
+4. Threat Rationale Word Cloud
+What it shows:
+
+Threat-related terms (e.g., data_exfiltration, root_shell) sized by their frequency in model explanations.
+
+Use cases:
+
+Threat landscape awareness: Identify recurring attack types in your environment.
+Example: Large ransomware terms suggest crypto-locker activity.
+
+Report summarization: Highlight key threats for executive briefings.
+
+Incident triage: Prioritize investigations based on prevalent threat types.
+
+5. Multi-Alert Feature Comparison (Radar Chart)
+What it shows:
+
+A spider-web plot comparing feature importance across two alerts.
+Example:
+
+Alert 1: Spikes in logins and shells = brute-force to privilege escalation.
+
+Alert 2: Spikes in ports = port scanning.
+
+Use cases:
+
+Attack differentiation: Distinguish DDoS (high src_bytes) vs. credential stuffing (high logins).
+
+Campaign linking: Identify shared features across alerts to cluster related incidents.
+
+Defense tuning: Allocate resources to monitor high-risk features.
+
+6. Real-Time Risk Score Timeline
+What it shows:
+
+A line graph plotting malware_prob scores over time.
+
+Sudden spikes indicate active attacks (e.g., 0.93 at 09:30).
+
+Use cases:
+
+Live attack detection: Trigger SOC workflows when scores exceed thresholds.
+
+Impact assessment: Measure how long an attack persisted (e.g., 30-minute spike).
+
+Post-mortem analysis: Reconstruct attack timelines during investigations.
