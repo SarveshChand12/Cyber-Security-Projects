@@ -1,0 +1,8 @@
+# Python Version
+python==3.8
+
+# Core Libraries
+torch==1.12.1
+pandas==1.5.3
+numpy==1.21.6
+scikit-learn==1.2.2

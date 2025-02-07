@@ -1,0 +1,5 @@
+# Python Version
+python==3.8
+
+# Core Libraries
+scapy==2.5.0
